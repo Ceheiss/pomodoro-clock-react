@@ -27,7 +27,36 @@ const sessionTimeReducer = (state = 25, action) => {
   }
 };
 
+// const clockReducer = (state = null, action) => {
+//   switch (action.type) {
+//     case 'START_CLOCK':
+//       let time = action.payload * 60;
+//       const timeHandler = () => {
+//         if (time > 0) {
+//           time = time - 1;
+//           console.log('current time: ', time);
+//           return time;
+//         }
+//         return 0;
+//       };
+//       setInterval(timeHandler, 1000);
+//     default:
+//       return state;
+//   }
+// };
+
+const isTimerOnReducer = (state = false, action) => {
+  switch (action.type) {
+    case 'IS_TIMER_ON':
+      return !state;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   breakTime: breakTimeReducer,
   sessionTime: sessionTimeReducer,
+  //clock: clockReducer,
+  isTimerOn: isTimerOnReducer,
 });
