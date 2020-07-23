@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
+import { giveValidNumber } from '../helpers';
 
 const breakTimeReducer = (state = 5, action) => {
   switch (action.type) {
     case 'ADD_MINUTE_BREAK':
-      return state + 1;
+      return giveValidNumber('add', state);
     case 'SUBTRACT_MINUTE_BREAK':
-      return state - 1;
+      return giveValidNumber('subtract', state);
     case 'RESET':
       return 5;
     default:
@@ -16,9 +17,9 @@ const breakTimeReducer = (state = 5, action) => {
 const sessionTimeReducer = (state = 25, action) => {
   switch (action.type) {
     case 'ADD_MINUTE_SESSION':
-      return state + 1;
+      return giveValidNumber('add', state);
     case 'SUBTRACT_MINUTE_SESSION':
-      return state - 1;
+      return giveValidNumber('subtract', state);
     case 'RESET':
       return 25;
     default:
