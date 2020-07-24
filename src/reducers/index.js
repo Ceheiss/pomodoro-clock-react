@@ -27,6 +27,23 @@ const sessionTimeReducer = (state = 25, action) => {
   }
 };
 
+const clockReducer = (state = null, action) => {
+  console.log(action);
+  switch (action.type) {
+    case 'CLOCK_TICK':
+      console.log('Current state is: ', state);
+      console.log('TICK CLOCK CALLED');
+      return state - 1;
+    case 'START_CLOCK':
+      console.log("BIITCH I'm CALLES");
+      const returnValue = action.payload * 60;
+      console.log('RETURNS SHOUL MUDAFUCKING BEEE: ', returnValue);
+      return returnValue;
+    default:
+      return state;
+  }
+};
+
 // const clockReducer = (state = null, action) => {
 //   switch (action.type) {
 //     case 'START_CLOCK':
@@ -57,6 +74,6 @@ const isTimerOnReducer = (state = false, action) => {
 export default combineReducers({
   breakTime: breakTimeReducer,
   sessionTime: sessionTimeReducer,
-  //clock: clockReducer,
   isTimerOn: isTimerOnReducer,
+  clock: clockReducer,
 });

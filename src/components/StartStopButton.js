@@ -1,20 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startClock, toggleTimer } from '../actions';
+import { toggleTimer, clockTick, startClock } from '../actions';
 
 const StartStopButton = ({
-  startClock,
+  clock,
   sessionTime,
   toggleTimer,
-  isTimerOn,
+  clockTick,
+  startClock,
 }) => {
   const onClickHandler = () => {
     toggleTimer();
     startClock(sessionTime);
+    setInterval(() => {
+      clockTick();
+    }, 1000);
   };
 
   return (
-    <button id="start_stop" onClick={onClickHandler}>
+    <button id="start_stop" onClick={() => onClickHandler(clock)}>
       START-STOP
     </button>
   );
@@ -23,10 +27,10 @@ const StartStopButton = ({
 const mapStateToProps = (state) => {
   return {
     sessionTime: state.sessionTime,
-    isTimerOn: state.isTimerOn,
+    clock: state.clock,
   };
 };
 
-export default connect(mapStateToProps, { startClock, toggleTimer })(
+export default connect(mapStateToProps, { toggleTimer, startClock, clockTick })(
   StartStopButton
 );

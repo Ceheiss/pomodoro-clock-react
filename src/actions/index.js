@@ -14,9 +14,13 @@ export const subtractMinuteSession = () => ({
   type: 'SUBTRACT_MINUTE_SESSION',
 });
 
-export const startClock = (sessionTime) => ({
+export const clockTick = () => ({
+  type: 'CLOCK_TICK',
+});
+
+export const startClock = (session) => ({
   type: 'START_CLOCK',
-  payload: sessionTime,
+  payload: session,
 });
 
 export const toggleTimer = () => ({ type: 'IS_TIMER_ON' });
